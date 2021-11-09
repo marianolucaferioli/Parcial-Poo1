@@ -1,0 +1,31 @@
+import parcelas.*
+import plantas.*
+
+describe "Test de parcelas" {
+	
+	const parcelaEco = new ParcelaEcologica(ancho = 5, largo = 7, horasDeSolQueRecibe = 5)
+
+	const quinoa = new Quinoa(anioDeObtencionSemilla = 2010, altura = 2, horasDeSolQueTolera = 12)
+	
+	const parcelaInd = new ParcelaIndustrial(ancho = 5, largo = 1, horasDeSolQueRecibe = 5)
+	
+	const sojaTransgenica = new SojaTransgenica(anioDeObtencionSemilla = 2015, altura = 0.6)
+	
+	
+	method initialize() {
+
+		parcelaEco.plantar(quinoa)
+		
+		parcelaInd.plantar(sojaTransgenica)
+	}
+	
+	test "Parcela ecologica" {
+		assert.notThat(parcelaEco.tieneComplicaciones())
+	}
+	
+	test "Parcela industrial" {
+		assert.that(sojaTransgenica.esParcelaIdeal(parcelaInd))
+	}
+}
+
+
